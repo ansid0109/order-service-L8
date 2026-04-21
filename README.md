@@ -14,6 +14,8 @@ Set the following environment variables before starting the app:
 
 - `ORDER_TARGET_URL` (required): Full URL of the downstream endpoint that receives orders.
 - `ORDER_TARGET_TIMEOUT_MS` (optional): Request timeout in milliseconds. Defaults to `5000`.
+- `ORDER_TARGET_MAX_RETRIES` (optional): Number of retries after the first attempt. Defaults to `2`.
+- `ORDER_TARGET_RETRY_BASE_MS` (optional): Base delay for exponential backoff. Defaults to `200` ms.
 
 Example:
 
@@ -21,6 +23,8 @@ Example:
 cat << EOF > .env
 ORDER_TARGET_URL=http://localhost:3001/orders
 ORDER_TARGET_TIMEOUT_MS=5000
+ORDER_TARGET_MAX_RETRIES=2
+ORDER_TARGET_RETRY_BASE_MS=200
 EOF
 
 source .env
