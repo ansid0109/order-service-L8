@@ -2,9 +2,9 @@
 
 module.exports = async function (fastify, opts) {
   fastify.post('/', async function (request, reply) {
-    const msg = request.body
-    fastify.sendMessage(Buffer.from(JSON.stringify(msg)))
-    reply.code(201)
+    const order = request.body
+    await fastify.sendOrder(order)
+    reply.code(201).send({ status: 'forwarded' })
   })
 
   fastify.get('/health', async function (request, reply) {
